@@ -13,10 +13,12 @@ export default class Booking extends React.Component {
         this.state = {
             cinema: null,
             film: null,
-            showing: null
+            showing: null,
+            booking: null
         };
         this.selectCinema = this.selectCinema.bind(this);
         this.selectShowing = this.selectShowing.bind(this);
+        this.bookingComplete = this.bookingComplete.bind(this);
     }
 
     render() {
@@ -32,8 +34,10 @@ export default class Booking extends React.Component {
      * Render the appropriate widget(s) for the current booking state
      */
     renderWidget() {
-        if (this.state.showing) {
-            return <SeatSelect showing={this.state.showing}/>
+        if (this.state.booking) {
+            return <div>Booking complete, reference {this.state.booking[0].reference}</div>;
+        } else if (this.state.showing) {
+            return <SeatSelect showing={this.state.showing} bookingComplete={this.bookingComplete}/>
         } else if (this.state.cinema) {
             return <FilmTimeSelect cinema={this.state.cinema} selectShowing={this.selectShowing}/>;
         } else {
@@ -47,5 +51,9 @@ export default class Booking extends React.Component {
 
     selectShowing(showing) {
         this.setState({ showing: showing });
+    }
+
+    bookingComplete(booking) {
+        this.setState({ booking: booking });
     }
 }
