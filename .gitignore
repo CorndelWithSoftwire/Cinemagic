@@ -1,4 +1,7 @@
 *.iml
 .idea/
+node_modules/
 target/
 persistence.xml
+src/main/resources/static/index.js*
+src/main/resources/static/index.css*
