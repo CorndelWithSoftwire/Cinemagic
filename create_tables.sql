@@ -36,3 +36,9 @@ CREATE TABLE bookings (
   seat_number int(11) NOT NULL,
   FOREIGN KEY (showing_id) REFERENCES showings (id)
 );
+
+CREATE TABLE admins (
+  username varchar(255) NOT NULL PRIMARY KEY,
+  password varchar(255) NOT NULL,
+  enabled boolean NOT NULL
+);
