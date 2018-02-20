@@ -8,6 +8,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 import javax.sql.DataSource;
 
+/**
+ * Security configuration for secure (i.e. admin) endpoints.
+ */
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 

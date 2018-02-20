@@ -51,6 +51,13 @@
             <artifactId>guava</artifactId>
             <version>23.6-jre</version>
         </dependency>
+
+        <!-- Java 8 Jackson -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

@@ -1,0 +1,22 @@
+.app {
+  background: #404080;
+  color: white;
+  font-family: Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+
+  // Flex configuration
+  display: flex;
+
+  .main-content {
+    flex: 0 1 800px;
+  }
+
+  .curtain {
+    flex: 1 0 auto;
+  }
+
+  // Curtain styling
+  .curtain {
+    background: darkred;
+  }
+}

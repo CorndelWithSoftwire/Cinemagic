@@ -49,7 +49,7 @@ public class Screen {
      * Maybe abandon the composite key!
      */
     @Embeddable
-    public class ScreenId implements Serializable {
+    public static class ScreenId implements Serializable {
         private Cinema cinema;
         private Integer id;
 
