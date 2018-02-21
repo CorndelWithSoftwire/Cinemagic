@@ -1,4 +1,5 @@
 import * as React from "react";
+import LoadingSpinner from "./loadingSpinner";
 
 /**
  * Initial cinema selection form before anything else has been chosen
@@ -9,7 +10,7 @@ export default class CinemaSelect extends React.Component {
         super(props);
         this.state = {
             selected: null,
-            cinemas: []
+            cinemas: null
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -23,15 +24,15 @@ export default class CinemaSelect extends React.Component {
         return (
             <div className="cinema-select">
                 <h3>Choose a Cinema</h3>
-                <form onSubmit={this.handleSubmit}>
-                    <select defaultValue="" onChange={this.onChange}>
-                        <option value="" disabled>Choose a Cinema...</option>
-                        {this.state.cinemas.map((c, index) => <option key={index} value={index}>{c.name}</option>)}
-                    </select>
-                    <button type="submit">
-                        Go!
-                    </button>
-                </form>
+                {this.state.cinemas
+                    ? <form onSubmit={this.handleSubmit}>
+                          <select defaultValue="" onChange={this.onChange}>
+                              <option value="" disabled>Choose a Cinema...</option>
+                              {this.state.cinemas.map((c, index) => <option key={index} value={index}>{c.name}</option>)}
+                          </select>
+                          <button type="submit">Go!</button>
+                      </form>
+                    : <LoadingSpinner/>}
             </div>
         );
     }

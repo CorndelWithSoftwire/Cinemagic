@@ -1,12 +1,13 @@
 import * as React from "react";
+import LoadingSpinner from "./loadingSpinner";
 
 export default class SeatSelect extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            bookings: [],
-            seats: []
+            bookings: null,
+            seats: null
         };
         this.onSeatClick = this.onSeatClick.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,17 +22,18 @@ export default class SeatSelect extends React.Component {
             <div className="seat-select">
                 <div>Screen</div>
                 <div className="seats">
-                    {this.state.seats.map((row, rowIndex) =>
-                        <div className="row" key={rowIndex}>
-                            {row.map((seat, seatIndex) =>
-                                <div className="seat" key={seatIndex}>
-                                    <button onClick={() => this.onSeatClick(rowIndex, seatIndex)} disabled={seat.booked ? "disabled" : null}>
-                                        {seat.booked ? 'X' : seat.selected ? 'O' : 'U'}
-                                    </button>
-                                </div>
-                            )}
-                        </div>
-                    )}
+                    {this.state.seats
+                        ? this.state.seats.map((row, rowIndex) =>
+                            <div className="row" key={rowIndex}>
+                                {row.map((seat, seatIndex) =>
+                                    <div className="seat" key={seatIndex}>
+                                        <button onClick={() => this.onSeatClick(rowIndex, seatIndex)} disabled={seat.booked ? "disabled" : null}>
+                                            {seat.booked ? 'X' : seat.selected ? 'O' : 'U'}
+                                        </button>
+                                    </div>
+                                )}
+                            </div>)
+                        : <LoadingSpinner/>}
                 </div>
                 <button onClick={this.handleSubmit}>Book!</button>
             </div>
