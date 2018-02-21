@@ -5,7 +5,7 @@
   "author": "Softwire",
   "private": true,
   "scripts": {
-    "build": "npm run compile-js && npm run compile-react",
+    "build": "npm run compile-react && npm run compile-sass",
     "compile-react": "webpack",
     "compile-sass": "node compile-sass.js"
   },

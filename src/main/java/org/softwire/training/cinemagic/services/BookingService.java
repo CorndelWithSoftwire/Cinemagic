@@ -29,7 +29,6 @@ public class BookingService {
         bookings.forEach(booking -> {
             booking.setReference(reference);
             entityManager.persist(booking);
-            entityManager.refresh(booking);
         });
 
         return bookings;

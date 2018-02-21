@@ -25,7 +25,7 @@ export default class CinemaSelect extends React.Component {
             <div className="cinema-select">
                 <h3>Choose a Cinema</h3>
                 {this.state.cinemas
-                    ? <form onSubmit={this.handleSubmit}>
+                    ? <form className="cinema-select-form" onSubmit={this.handleSubmit}>
                           <select defaultValue="" onChange={this.onChange}>
                               <option value="" disabled>Choose a Cinema...</option>
                               {this.state.cinemas.map((c, index) => <option key={index} value={index}>{c.name}</option>)}
