@@ -15,13 +15,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class WebDriverProvider {
 
+    /**
+     * Set this to 'false' to disable headless mode and allow debugging with developer tools.
+     */
+    private static final boolean HEADLESS = true;
+
     @Bean
     public WebDriver webDriver() {
         ChromeOptions options = new ChromeOptions();
 
-        // Configure Chrome to run in 'headless' mode
-        // Comment out this line to run a full Chrome window for debugging
-        options.addArguments("--headless", "--disable-gpu");
+        if (HEADLESS) {
+            options.addArguments("--headless", "--disable-gpu");
+        }
 
         ChromeDriverManager.getInstance().setup();
         return new ChromeDriver(options);

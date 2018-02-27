@@ -3,49 +3,57 @@ package org.softwire.training.cinemagic.configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+import java.io.IOException;
 
 /**
  * Security configuration for secure (i.e. admin) endpoints.
  */
 @Configuration
+@EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private DataSource dataSource;
 
-    /**
-     * Configure authentication to use our DB.
-     *
-     * Override the authorities query to return ROLE_USER for every user.
-     */
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication()
-                .dataSource(dataSource)
-                .authoritiesByUsernameQuery("SELECT username, 'ROLE_ADMIN' from admins where username = ?");
+        // TODO: don't hardcode the admin account!
+        auth.inMemoryAuthentication().withUser("admin").password("password").roles("ADMIN");
     }
 
-    /**
-     * Configure Web Security
-     * - Disable CSRF protection (don't worry about this for now!)
-     * - Allow any user to access the root
-     * - Any other pages require authentication
-     * - Use the default Login and Logout forms
-     * TODO: configure better
-     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .authorizeRequests()
-                .anyRequest().permitAll()
-                .regexMatchers("^/api/admin.*").hasRole("ADMIN")
-                .and()
-                .formLogin().loginPage("/login").permitAll()
-                .and()
-                .logout().permitAll();
+        http
+                // Disable CSRF protection for simplicity
+                // TODO: Enable CSRF protection?
+                .csrf().disable()
+                // By default allow all requests (use @Secured to mark others)
+                .authorizeRequests().anyRequest().permitAll()
+                // Configure exception handling
+                .and().exceptionHandling()
+                    .authenticationEntryPoint((req, res, auth) -> res.sendError(HttpServletResponse.SC_UNAUTHORIZED))
+                // Configure login
+                .and().formLogin().loginProcessingUrl("/api/admin/login")
+                    .successHandler((req, res, auth) -> res.setStatus(HttpServletResponse.SC_NO_CONTENT))
+                    .failureHandler((req, res, auth) -> res.sendError(HttpServletResponse.SC_UNAUTHORIZED))
+                // Configure logout
+                .and().logout().logoutUrl("/api/admin/logout")
+                    .logoutSuccessHandler((req, res, auth) -> res.setStatus(HttpServletResponse.SC_NO_CONTENT));
     }
 }
