@@ -12,18 +12,33 @@ import java.util.List;
 @Transactional
 public class CinemaService {
 
-    @Autowired
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
-    public List<Cinema> listCinemas() {
+    @Autowired
+    public CinemaService(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
+    public List<Cinema> list() {
         return entityManager
                 .createQuery("SELECT c FROM Cinema AS c ORDER BY c.name", Cinema.class)
                 .getResultList();
     }
 
-    // TODO: Autocreate screens at the same time?
+    public Cinema get(Integer cinemaId) {
+        return entityManager.find(Cinema.class, cinemaId);
+    }
+
     public Cinema create(Cinema cinema) {
         entityManager.persist(cinema);
+        entityManager.refresh(cinema);
         return cinema;
+    }
+
+    public void delete(Integer cinemaId) {
+        Cinema cinema = entityManager.find(Cinema.class, cinemaId);
+        if (cinema != null) {
+            entityManager.remove(cinema);
+        }
     }
 }

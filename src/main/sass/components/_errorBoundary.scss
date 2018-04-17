@@ -1,0 +1,16 @@
+.errorBoundary {
+
+  h1 {
+    font-family: 'Amatic SC', cursive;
+  }
+
+  p {
+    font-family: 'Open Sans Condensed', sans-serif;
+  }
+
+  margin: 0;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

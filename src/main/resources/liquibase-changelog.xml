@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="01" author="softwire">
+
+        <createTable tableName="cinemas">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" unique="true" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="screens">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" unique="true" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cinema_id" type="int">
+                <constraints nullable="false"
+                             primaryKeyName="id"
+                             references="cinemas"
+                             foreignKeyName="fk_screens_cinema_id"/>
+            </column>
+            <column name="rows" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_width" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createIndex indexName="screens_cinema_id"
+                     tableName="screens">
+            <column name="cinema_id"/>
+        </createIndex>
+
+        <createTable tableName="films">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" unique="true" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="length_minutes" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="showings">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" unique="true" primaryKey="true"/>
+            </column>
+            <column name="screen_id" type="int">
+                <constraints nullable="false"
+                             foreignKeyName="fk_showings_screen_id"
+                             primaryKeyName="id"
+                             references="screens"/>
+            </column>
+            <column name="film_id" type="int">
+                <constraints nullable="false"
+                             foreignKeyName="fk_showings_film_id"
+                             primaryKeyName="id"
+                             references="films"/>
+            </column>
+            <column name="time" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="bookings">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" unique="true" primaryKey="true"/>
+            </column>
+            <column name="showing_id" type="int">
+                <constraints nullable="false"
+                             foreignKeyName="fk_bookings_showing_id"
+                             primaryKeyName="id"
+                             references="showings"/>
+            </column>
+            <column name="reference" type="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="seat_row" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="seat_number" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>

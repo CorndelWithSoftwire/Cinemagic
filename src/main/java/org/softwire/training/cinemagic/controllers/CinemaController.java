@@ -1,5 +1,6 @@
 package org.softwire.training.cinemagic.controllers;
 
+import org.softwire.training.cinemagic.exceptions.NotFoundException;
 import org.softwire.training.cinemagic.models.Cinema;
 import org.softwire.training.cinemagic.models.Showing;
 import org.softwire.training.cinemagic.services.CinemaService;
@@ -16,15 +17,28 @@ import java.util.List;
 @RequestMapping(value = "/api/cinemas")
 public class CinemaController {
 
-    @Autowired
-    private CinemaService cinemaService;
+    private final CinemaService cinemaService;
+    private final ShowingService showingService;
 
     @Autowired
-    private ShowingService showingService;
+    public CinemaController(CinemaService cinemaService,
+                            ShowingService showingService) {
+        this.cinemaService = cinemaService;
+        this.showingService = showingService;
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Cinema> listCinemas() {
-        return cinemaService.listCinemas();
+        return cinemaService.list();
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    public Cinema getCinema(@PathVariable Integer id) throws NotFoundException {
+        Cinema cinema = cinemaService.get(id);
+        if (cinema == null) {
+            throw new NotFoundException("Cinema", id);
+        }
+        return cinema;
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}/showings")

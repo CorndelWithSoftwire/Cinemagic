@@ -1,6 +1,10 @@
 @import "components/app";
-@import "components/banner";
 @import "components/seatSelect";
+@import "components/spinner";
+@import "components/admin";
+@import "components/booking";
+@import "components/errorModal";
+@import "components/errorBoundary";
 
 body {
   margin: 0;

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!--
+        Override default logging configuration while testing.
+
+        Suppress all console logs (they are very noisey) and instead log all application logs to a file.
+    -->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>target/integration-test/application-under-test.log</file>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d %-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.springframework.web" level="DEBUG"/>
+    <logger name="org.softwire.training" level="DEBUG"/>
+
+    <root level="info">
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>
