@@ -28,7 +28,7 @@ public class WebDriverLoggingRule implements MethodRule {
     private static final String INTEGRATION_TEST_LOG_DIRECTORY = "target/integration-test/";
 
     public Statement apply(final Statement statement, final FrameworkMethod frameworkMethod, final Object target) {
-        final WebDriver driver = ((BookingTest) target).driver;
+        final WebDriver driver = ((IntegrationTestBase) target).driver;
 
         return new Statement() {
             @Override
