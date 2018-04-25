@@ -38,7 +38,7 @@ public class BookingService {
     public List<Booking> makeBookings(List<Booking> bookings) {
         validateBookings(bookings);
 
-        String reference = RandomHelper.PrettyUid(10);
+        String reference = RandomHelper.prettyUid(10);
 
         bookings.forEach(booking -> {
             booking.setReference(reference);

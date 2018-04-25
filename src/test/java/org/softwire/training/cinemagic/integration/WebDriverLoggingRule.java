@@ -12,6 +12,7 @@ import org.openqa.selenium.logging.LogEntry;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Collectors;
@@ -47,10 +48,10 @@ public class WebDriverLoggingRule implements MethodRule {
     }
 
     private void captureScreenshot(WebDriver driver, String methodName) throws IOException {
-        FileOutputStream outputStream =
-                new FileOutputStream(INTEGRATION_TEST_LOG_DIRECTORY + "screenshot-" + methodName + ".png");
-        outputStream.write(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
-        outputStream.close();
+        Files.write(
+                Paths.get(INTEGRATION_TEST_LOG_DIRECTORY, "screenshot-" + methodName + ".png"),
+                ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)
+        );
     }
 
     private void captureLogs(WebDriver driver, String methodName) throws IOException {
@@ -59,8 +60,10 @@ public class WebDriverLoggingRule implements MethodRule {
                 browser.getAll().stream().map(LogEntry::toString).collect(Collectors.toList()),
                 "\n"
         );
-        FileOutputStream outputStream = new FileOutputStream(INTEGRATION_TEST_LOG_DIRECTORY + "browser-logs-" + methodName);
-        outputStream.write(browserLogs.getBytes());
-        outputStream.close();
+
+        Files.write(
+                Paths.get(INTEGRATION_TEST_LOG_DIRECTORY, "browser-logs-" + methodName),
+                browserLogs.getBytes(StandardCharsets.UTF_8)
+        );
     }
 }

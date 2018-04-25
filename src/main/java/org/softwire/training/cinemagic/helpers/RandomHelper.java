@@ -12,9 +12,9 @@ import java.util.Random;
 
 public class RandomHelper {
 
-    public static SecureRandom RANDOM = new SecureRandom();
+    private static final SecureRandom RANDOM = new SecureRandom();
 
-    public static String PrettyUid(int characters) {
+    public static String prettyUid(int characters) {
         return Strings.padStart(
                 new BigInteger(5 * characters, RANDOM).toString(32).toUpperCase(),
                 characters,
