@@ -28,32 +28,28 @@ export default class ShowingSelect extends React.Component {
     }
 
     render() {
-        const showings = () => {
-            if (this.state.showings.length) {
-                return (
-                  <div>
-                    {this.state.showings.map(s => (
-                      <button
-                        key={s.id}
-                        onClick={() => this.props.selectShowing(s)}
-                        className="film-selection-button">
-                        {s.film.name} - {s.time.format('MMM Do h:mm A')}
-                      </button>))}
-                  </div>
-                );
-            }
-            return <p>There are no showings for this cinema.</p>;
-        };
-
         if (!this.isLoaded()) {
             return <LoadingSpinner />;
         }
-            return (
-              <div className="film-time-select">
+
+        const showings = this.state.showings.length
+            ? <div>
+                {this.state.showings.map(s => (
+                  <button
+                    key={s.id}
+                    onClick={() => this.props.selectShowing(s)}
+                    className="film-selection-button">
+                    {s.film.name} - {s.time.format('MMM Do h:mm A')}
+                  </button>))}
+              </div>
+            : <p>There are no showings for this cinema.</p>;
+
+        return (
+            <div className="showing-select">
                 <h1>Select a showing</h1>
                 <h3>Cinema: {this.props.cinema.name}</h3>
-                {showings()}
-              </div>
-            );
+                {showings}
+            </div>
+        );
     }
 }

@@ -76,40 +76,62 @@ export default class SeatSelect extends React.Component {
             return <LoadingSpinner />;
         }
 
-        const seatIcon = (seat) => {
-            if (seat.booked) {
-                return 'X';
-            } else if (seat.selected) {
-                return 'O';
-            }
-            return 'U';
-        };
-
         return (
-          <div className="seat-select">
-            <h1>Select a seat</h1>
-            <div className="seats">
-              {this.state.seats.map((row, rowIndex) => (
-                <div className="row" key={rowIndex}>
-                  {row.map((seat, seatIndex) => (
-                    <div className="seat" key={seatIndex}>
-                      <button
-                        onClick={() => this.onSeatClick(rowIndex, seatIndex)}
-                        disabled={seat.booked ? 'disabled' : null}
-                      >
-                        {seatIcon(seat)}
-                      </button>
-                    </div>))}
-                </div>))
-                    }
+            <div className="seat-select">
+                <div className="title-section">
+                    <h1>Select your seats</h1>
+                </div>
+                <div className="selection-section">
+                    <div className="seats">
+                        <div className="screen">Screen</div>
+                      {this.state.seats.map((row, rowIndex) => (
+                        <div className="row" key={rowIndex}>
+                          {row.map((seat, seatIndex) => (
+                            <div className="seat-container" key={seatIndex}>
+                              <button
+                                  className={"seat" + (seat.booked ? ' booked' : seat.selected ? ' selected' : ' free')}
+                                  onClick={() => this.onSeatClick(rowIndex, seatIndex)}
+                                  disabled={seat.booked ? 'disabled' : null}>
+                                  <span className='dot'/>
+                              </button>
+                                {/*TODO: accessibility*/}
+                            </div>))}
+                        </div>))
+                            }
+                    </div>
+                    <div className="right-panel">
+                        {this.renderKey()}
+                        <button className="submit-button" onClick={this.handleSubmit} id="seat-select-book-button">Book!</button>
+                    </div>
+                </div>
             </div>
-            <button
-              onClick={this.handleSubmit}
-              id="seat-select-book-button"
-            >
-                Book!
-            </button>
-          </div>
+        );
+    }
+
+    renderKey() {
+        return (
+            <div className="key">
+                <div className="key-entry">
+                    <div className="seat-container">
+                        <div className="seat free"/>
+                    </div>
+                    <div className="label">Available</div>
+                </div>
+                <div className="key-entry">
+                    <div className="seat-container">
+                        <div className="seat selected">
+                            <span className='dot'/>
+                        </div>
+                    </div>
+                    <div className="label">Selected</div>
+                </div>
+                <div className="key-entry">
+                    <div className="seat-container">
+                        <div className="seat booked"/>
+                    </div>
+                    <div className="label">Unavailable</div>
+                </div>
+            </div>
         );
     }
 }

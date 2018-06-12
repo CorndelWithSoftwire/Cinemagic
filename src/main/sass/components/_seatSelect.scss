@@ -1,12 +1,124 @@
 .seat-select {
+  margin-top: 28px;
+
+  border: 4px solid $primary-colour;
+
+  display: flex;
+  flex-direction: column;
+
+  .title-section {
+    background: darken($primary-colour, 10);
+    color: $background-colour;
+  }
+
+  .selection-section {
+    padding: 28px;
+    display: flex;
+    justify-content: space-around;
+  }
+
   .seats {
+    flex: 0 0 auto;
+
     display: flex;
     flex-direction: column;
     align-items: center;
 
+    .screen {
+      width: 100%;
+      padding: 4px;
+      margin-bottom: 4px;
+      background: lighten($primary-colour, 30);
+      color: $background-colour;
+
+      border: 4px solid $primary-colour;
+      box-sizing: border-box;
+    }
     .row {
       display: flex;
       flex-direction: row;
+    }
+  }
+
+  .seat-container {
+    padding: 4px;
+
+    .seat {
+      height: 24px;
+      width: 24px;
+      border: 4px solid $primary-colour;
+      border-radius: 4px;
+      padding: 0;
+      box-sizing: border-box;
+      background: $primary-colour;
+    }
+
+    .booked {
+      background: #999;
+      border-color: #999;
+
+      .dot {
+        display: none;
+      }
+    }
+
+    // Hide the dot for free seats and show it appearing on hover
+    .free {
+      .dot {
+        opacity: 0;
+      }
+
+      &:hover .dot {
+        opacity: 0.8;
+      }
+    }
+
+    .dot {
+      display: inline-block;
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+      background: $background-colour;
+    }
+  }
+
+  .right-panel {
+    flex: 1 0 auto;
+    max-width: 20%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .key {
+    flex: 1 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    max-height: 280px;
+
+    .key-entry {
+      display: flex;
+      align-items: center;
+
+      .seat-container, .label {
+        flex: 0 0 auto;
+      }
+    }
+  }
+
+  .submit-button {
+    flex: 0 0 auto;
+    border: 4px solid $primary-colour;
+    background: lighten($primary-colour, 20);
+    font-family: $title-font;
+    color: $background-colour;
+    font-size: 1.5rem;
+
+    &:hover {
+      background: $primary-colour;
     }
   }
 }
