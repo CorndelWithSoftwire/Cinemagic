@@ -5,6 +5,7 @@ import Booking from './booking/booking';
 import Admin from './admin/admin';
 import ErrorModal from './errorModal';
 import AuthHolder from './admin/authHolder';
+import NavBar from "./navBar";
 
 export default class App extends React.Component {
     constructor(props) {
@@ -73,25 +74,15 @@ export default class App extends React.Component {
           </Switch>
         );
 
-        const navbar = (
-          <ul className="app-navbar">
-            <li className="title">
-              <Link to="/">Cinemagic</Link>
-            </li>
-          </ul>
-        );
-
         return (
           <div className="app">
             <div className="main-content">
-              {this.state.recoverableError ? <ErrorModal
-                message={this.state.recoverableError}
-                onClose={this.onCloseErrorModal}
-              /> : ''}
+              {this.state.recoverableError
+                  ? <ErrorModal message={this.state.recoverableError} onClose={this.onCloseErrorModal}/>
+                  : ''}
               <BrowserRouter>
                 <div>
-                  {navbar}
-                  <hr />
+                  <NavBar/>
                   {routes}
                 </div>
               </BrowserRouter>

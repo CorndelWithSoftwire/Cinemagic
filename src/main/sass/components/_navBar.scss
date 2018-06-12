@@ -1,0 +1,41 @@
+.app-navbar {
+
+  border-bottom: 4px solid $primary-colour;
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 24px 0 16px 0;
+    overflow: hidden;
+  }
+
+  li {
+    display: block;
+    font-family: $title-font;
+    float: left;
+    font-size: 4rem;
+
+    a {
+      text-decoration: none;
+      color: $primary-colour;
+      &:hover {
+        color: darken($primary-colour, 20);
+      }
+    }
+  }
+
+  .title {
+    position: relative;
+  }
+
+  .star-icon {
+    $size: 40px;
+
+    position: absolute;
+    right: -$size;
+    height: $size;
+    width: $size;
+    background: url("star.png") no-repeat center;
+    background-size: contain;
+  }
+}

@@ -5,7 +5,7 @@ import LoadingSpinner from '../loadingSpinner';
 /**
  * Component for selecting a Film and Time after the cinema has been selected
  */
-export default class FilmTimeSelect extends React.Component {
+export default class ShowingSelect extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -34,13 +34,11 @@ export default class FilmTimeSelect extends React.Component {
                   <div>
                     {this.state.showings.map(s => (
                       <button
-                        key={s.film.id}
+                        key={s.id}
                         onClick={() => this.props.selectShowing(s)}
-                        className="film-selection-button"
-                      >
+                        className="film-selection-button">
                         {s.film.name} - {s.time.format('MMM Do h:mm A')}
-                      </button>))
-                        }
+                      </button>))}
                   </div>
                 );
             }

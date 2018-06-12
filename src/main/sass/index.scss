@@ -1,11 +1,14 @@
+// Import global constants and styling
+@import "global";
+
+// Import components
+@import "components/admin";
 @import "components/app";
+@import "components/booking";
+@import "components/cinemaSelect";
+@import "components/errorBoundary";
+@import "components/errorModal";
+@import "components/navBar";
+@import "components/progressIndicator";
 @import "components/seatSelect";
 @import "components/spinner";
-@import "components/admin";
-@import "components/booking";
-@import "components/errorModal";
-@import "components/errorBoundary";
-
-body {
-  margin: 0;
-}

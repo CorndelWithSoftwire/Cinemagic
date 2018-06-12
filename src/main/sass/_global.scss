@@ -1,0 +1,10 @@
+$background-colour: #2a41a8;
+$primary-colour: #f8f522;
+$title-font: 'Ink Free', cursive;//'Amatic SC', cursive;
+$paragraph-font: 'Open Sans Condensed', sans-serif;
+
+body {
+  margin: 0;
+  background: $background-colour;
+  color: $primary-colour;
+}

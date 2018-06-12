@@ -38,16 +38,23 @@ export default class CinemaSelect extends React.Component {
         if (this.isLoaded()) {
             return (
               <div className="cinema-select">
-                <h1>Choose a Cinema</h1>
-                <form className="cinema-select-form" onSubmit={this.handleSubmit}>
-                  <select defaultValue="" onChange={this.onChange}>
-                    <option value="" disabled>Choose a Cinema...</option>
-                    {this.state.cinemas.map(({ name }, index) =>
-                      <option key={name} value={index}>{name}</option>)
-                            }
-                  </select>
-                  <button type="submit">Go!</button>
-                </form>
+                  <div className="title-section">
+                      <h1>Book your tickets</h1>
+                      <span className="tickets-icon">tickets icon</span>
+                  </div>
+                  <div className="selection-section">
+                      <form className="cinema-select-form" onSubmit={this.handleSubmit}>
+                          <div className="selection-container">
+                              <select defaultValue="" onChange={this.onChange}>
+                                  <option value="" disabled>Select a Cinema</option>
+                                  {this.state.cinemas.map(({ name }, index) =>
+                                      <option key={name} value={index}>{name}</option>)
+                                  }
+                              </select>
+                          </div>
+                          <button type="submit" className="submit-button">&#9654;</button>
+                      </form>
+                  </div>
               </div>
             );
         }

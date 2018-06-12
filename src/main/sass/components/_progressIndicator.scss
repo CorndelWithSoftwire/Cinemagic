@@ -1,0 +1,91 @@
+.progress-indicator {
+
+  $size: 80px;
+  $ratio: 0.70710678118; // sqrt(2)/2
+
+  display: flex;
+  justify-content: space-between;
+
+  .progress-step {
+    position: relative;
+    height: $size;
+    margin-right: 32px;
+    padding-left: $ratio * $size / 2;
+    flex: 1 0 auto;
+
+    font-size: 2rem;
+    line-height: calc(#{$size} - 1rem);
+
+    border-top: 4px solid $primary-colour;
+    border-bottom: 4px solid $primary-colour;
+    border-radius: 4px;
+
+    box-sizing: border-box;
+
+    // First step has a vertical left border
+    &:first-of-type {
+      border-left: 4px solid $primary-colour;
+      &:before {
+        content: none;
+      }
+    }
+  }
+
+  // Arrowheads before and after, made by rotating a square 45 degrees.
+
+  .progress-step:before {
+    // 1px fudge to make the edges line up more neatly
+    left: 1px - ($ratio * $size / 2);
+  }
+
+  .progress-step:after {
+    right: 1px - ($ratio * $size / 2);
+  }
+
+  .progress-step:before, .progress-step:after {
+    content: '';
+
+    position: absolute;
+    top: 8px;
+    box-sizing: border-box;
+
+    transform: rotate(45deg);
+
+    width: $ratio * $size;
+    height: $ratio * $size;
+
+    border-top: 4px solid $primary-colour;
+    border-right: 4px solid $primary-colour;
+    border-radius: 4px;
+  }
+
+  // Highlight a step by swapping round the background colours
+  .progress-step.highlighted {
+    background: $primary-colour;
+    color: $background-colour;
+
+    &:before {
+      background: $background-colour;
+    }
+
+    &:after {
+      background: $primary-colour;
+    }
+  }
+
+  // Swap the render order so later arrows sit under the leading ones
+  .progress-step {
+    &:nth-of-type(1) {
+      z-index: 4;
+    }
+    &:nth-of-type(2) {
+      z-index: 3;
+    }
+    &:nth-of-type(3) {
+      z-index: 2;
+    }
+    &:nth-of-type(4) {
+      z-index: 1;
+    }
+  }
+}

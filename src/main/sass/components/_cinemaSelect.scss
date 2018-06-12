@@ -1,0 +1,88 @@
+.cinema-select {
+  margin-top: 28px;
+
+  border: 4px solid $primary-colour;
+
+  display: flex;
+  flex-direction: column;
+
+  .title-section {
+    background: darken($primary-colour, 10);
+    color: $background-colour;
+
+    display: flex;
+
+    h1 {
+      flex: 1 0 auto;
+    }
+
+    .tickets-icon {
+      height: 48px;
+      flex: 0 0 auto;
+    }
+  }
+
+  .selection-section {
+    min-height: 200px;
+    padding: 28px;
+    background: lighten($primary-colour, 30);
+  }
+
+  .cinema-select-form {
+    display: flex;
+
+    .selection-container {
+      flex: 1 0 auto;
+      height: 60px;
+      box-sizing: border-box;
+      margin-right: 8px;
+    }
+
+    .submit-button {
+      flex: 0 0 auto;
+      height: 60px;
+      width: 60px;
+      font-size: 50px;
+      box-sizing: border-box;
+    }
+  }
+
+  .selection-container {
+    border: 4px solid $background-colour;
+    overflow: hidden;
+    background: $primary-colour;
+
+    &:hover {
+      background: lighten($primary-colour, 20);
+    }
+
+    select {
+      padding: 4px 8px;
+      width: 100%;
+      border: none;
+      box-shadow: none;
+      background: transparent;
+      background-image: none;
+      -webkit-appearance: none;
+
+      font-family: $title-font;
+      font-size: 1.5rem;
+      font-weight: bold;
+      line-height: 40px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .submit-button {
+    background: $background-colour;
+    color: $primary-colour;
+    border: none;
+
+    &:hover {
+      background: lighten($background-colour, 20);
+    }
+  }
+}
