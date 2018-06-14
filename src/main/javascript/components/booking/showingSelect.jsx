@@ -46,9 +46,12 @@ export default class ShowingSelect extends React.Component {
 
         return (
             <div className="showing-select">
-                <h1>Select a showing</h1>
-                <h3>Cinema: {this.props.cinema.name}</h3>
-                {showings}
+                <div className="title-section">
+                    <h1>Select a showing</h1>
+                </div>
+                <div className="selection-section">
+                    {showings}
+                </div>
             </div>
         );
     }

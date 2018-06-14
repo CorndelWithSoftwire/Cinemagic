@@ -1,4 +1,4 @@
-.showing-select {
+.booking-success {
   margin-top: 28px;
 
   border: 2px solid $primary-colour;
@@ -16,5 +16,6 @@
     display: flex;
     justify-content: space-around;
     background: lighten($primary-colour, 30);
+    color: $background-colour;
   }
 }

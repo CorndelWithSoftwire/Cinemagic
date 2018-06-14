@@ -1,24 +1,19 @@
 .cinema-select {
   margin-top: 28px;
 
-  border: 4px solid $primary-colour;
+  border: 2px solid $primary-colour;
 
   display: flex;
   flex-direction: column;
 
   .title-section {
-    background: darken($primary-colour, 10);
+    background: $primary-colour;
     color: $background-colour;
 
     display: flex;
 
     h1 {
       flex: 1 0 auto;
-    }
-
-    .tickets-icon {
-      height: 48px;
-      flex: 0 0 auto;
     }
   }
 
@@ -48,12 +43,12 @@
   }
 
   .selection-container {
-    border: 4px solid $background-colour;
+    border: 2px solid $primary-colour;
     overflow: hidden;
-    background: $primary-colour;
+    background: $background-colour;
 
     &:hover {
-      background: lighten($primary-colour, 20);
+      background: darken($background-colour, 20);
     }
 
     select {
@@ -65,10 +60,11 @@
       background-image: none;
       -webkit-appearance: none;
 
-      font-family: $title-font;
+      font-family: $paragraph-font;
       font-size: 1.5rem;
-      font-weight: bold;
       line-height: 40px;
+
+      color: $primary-colour;
 
       &:focus {
         outline: none;
@@ -79,10 +75,11 @@
   .submit-button {
     background: $background-colour;
     color: $primary-colour;
-    border: none;
+    border: 2px solid $primary-colour;
 
     &:hover {
-      background: lighten($background-colour, 20);
+      background: darken($background-colour, 20);
+      color: darken($primary-colour, 20);
     }
   }
 }

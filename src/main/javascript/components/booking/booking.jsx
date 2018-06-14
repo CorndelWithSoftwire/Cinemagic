@@ -3,6 +3,7 @@ import CinemaSelect from './cinemaSelect';
 import ShowingSelect from './showingSelect';
 import SeatSelect from './seatSelect';
 import ProgressIndicator from "./progressIndicator";
+import BookingSuccess from "./bookingSuccess";
 
 /**
  * Booking widget contains every component of the booking process.
@@ -38,10 +39,7 @@ export default class Booking extends React.Component {
     renderWidget() {
         if (this.state.booking) {
             return (
-              <div className="booking-success">
-                <h1>Booking Successful!</h1>
-                <div>Booking complete, reference {this.state.booking[0].reference}</div>
-              </div>
+                <BookingSuccess reference={this.state.booking[0].reference}/>
             );
         } else if (this.state.showing) {
             return (

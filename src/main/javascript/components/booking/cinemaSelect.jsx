@@ -40,7 +40,6 @@ export default class CinemaSelect extends React.Component {
               <div className="cinema-select">
                   <div className="title-section">
                       <h1>Book your tickets</h1>
-                      <span className="tickets-icon">tickets icon</span>
                   </div>
                   <div className="selection-section">
                       <form className="cinema-select-form" onSubmit={this.handleSubmit}>
