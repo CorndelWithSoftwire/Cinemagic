@@ -1,0 +1,20 @@
+.step-container {
+  margin-top: 28px;
+  border: 2px solid $primary-colour;
+
+  display: flex;
+  flex-direction: column;
+
+  .title-section {
+    background: $primary-colour;
+    color: $background-colour;
+  }
+
+  .step-section {
+    padding: 28px;
+    min-height: 200px;
+
+    background: lighten($primary-colour, 30);
+    color: $background-colour;
+  }
+}

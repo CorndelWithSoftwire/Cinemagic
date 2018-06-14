@@ -37,11 +37,7 @@ export default class CinemaSelect extends React.Component {
     render() {
         if (this.isLoaded()) {
             return (
-              <div className="cinema-select">
-                  <div className="title-section">
-                      <h1>Book your tickets</h1>
-                  </div>
-                  <div className="selection-section">
+                  <div className="cinema-select">
                       <form className="cinema-select-form" onSubmit={this.handleSubmit}>
                           <div className="selection-container">
                               <select defaultValue="" onChange={this.onChange}>
@@ -54,7 +50,6 @@ export default class CinemaSelect extends React.Component {
                           <button type="submit" className="submit-button">&#9654;</button>
                       </form>
                   </div>
-              </div>
             );
         }
         return <LoadingSpinner />;

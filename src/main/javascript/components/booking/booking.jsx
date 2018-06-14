@@ -4,9 +4,10 @@ import ShowingSelect from './showingSelect';
 import SeatSelect from './seatSelect';
 import ProgressIndicator from "./progressIndicator";
 import BookingSuccess from "./bookingSuccess";
+import StepContainer from "./stepContainer";
 
 /**
- * Booking widget contains every component of the booking process.
+ * The booking page contains every component of the booking process.
  */
 export default class Booking extends React.Component {
     constructor(props) {
@@ -34,35 +35,43 @@ export default class Booking extends React.Component {
     }
 
     /**
-     * Render the appropriate widget(s) for the current booking state
+     * Render the appropriate step for the current booking state
      */
-    renderWidget() {
+    renderStep() {
         if (this.state.booking) {
             return (
-                <BookingSuccess reference={this.state.booking[0].reference}/>
+                <StepContainer title="Booking Successful">
+                    <BookingSuccess reference={this.state.booking[0].reference}/>
+                </StepContainer>
             );
         } else if (this.state.showing) {
             return (
-              <SeatSelect
-                showing={this.state.showing}
-                bookingComplete={this.bookingComplete}
-                api={this.props.api}
-                errorHandler={this.props.errorHandler}/>
+                <StepContainer title="Choose your Seats">
+                    <SeatSelect
+                      showing={this.state.showing}
+                      bookingComplete={this.bookingComplete}
+                      api={this.props.api}
+                      errorHandler={this.props.errorHandler}/>
+                </StepContainer>
             );
         } else if (this.state.cinema) {
             return (
-              <ShowingSelect
-                cinema={this.state.cinema}
-                selectShowing={this.selectShowing}
-                api={this.props.api}
-                errorHandler={this.props.errorHandler}/>
+                <StepContainer title="Select a Showing">
+                    <ShowingSelect
+                      cinema={this.state.cinema}
+                      selectShowing={this.selectShowing}
+                      api={this.props.api}
+                      errorHandler={this.props.errorHandler}/>
+                </StepContainer>
             );
         }
         return (
-          <CinemaSelect
-            selectCinema={this.selectCinema}
-            api={this.props.api}
-            errorHandler={this.props.errorHandler}/>
+            <StepContainer title="Select a Cinema">
+                 <CinemaSelect
+                  selectCinema={this.selectCinema}
+                  api={this.props.api}
+                  errorHandler={this.props.errorHandler}/>
+            </StepContainer>
         );
     }
 
@@ -77,7 +86,7 @@ export default class Booking extends React.Component {
         return (
           <div className="booking">
               <ProgressIndicator steps={steps}/>
-            {this.renderWidget()}
+              {this.renderStep()}
           </div>
         );
     }

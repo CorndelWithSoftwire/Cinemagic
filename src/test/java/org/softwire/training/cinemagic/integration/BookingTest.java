@@ -57,7 +57,7 @@ public class BookingTest {
         select.selectByVisibleText(cinemaName);
         driver.findElement(By.xpath("//button[@type='submit']")).click();
 
-        waitForElement(By.className("film-time-select"));
+        waitForElement(By.className("showing-select"));
 
         // TODO: Finish this!
     }

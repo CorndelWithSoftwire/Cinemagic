@@ -1,20 +1,24 @@
 .showing-select {
-  margin-top: 28px;
-
-  border: 2px solid $primary-colour;
-
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
+  flex-wrap: wrap;
 
-  .title-section {
-    background: $primary-colour;
-    color: $background-colour;
-  }
+  .showing-selection-button {
+    flex: 0 0 auto;
 
-  .selection-section {
-    padding: 28px;
-    display: flex;
-    justify-content: space-around;
-    background: lighten($primary-colour, 30);
+    margin: 8px;
+    padding: 4px 16px;
+
+    border: 2px solid $primary-colour;
+    border-radius: 4px;
+    background: $background-colour;
+    color: $primary-colour;
+    font-family: $paragraph-font;
+    font-size: 1.2rem;
+
+    &:hover {
+      background: darken($background-colour, 20);
+      color: darken($primary-colour, 20);
+    }
   }
 }

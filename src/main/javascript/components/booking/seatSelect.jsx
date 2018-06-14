@@ -78,31 +78,25 @@ export default class SeatSelect extends React.Component {
 
         return (
             <div className="seat-select">
-                <div className="title-section">
-                    <h1>Select your seats</h1>
+                <div className="seats">
+                    <div className="screen">Screen</div>
+                  {this.state.seats.map((row, rowIndex) => (
+                    <div className="row" key={rowIndex}>
+                      {row.map((seat, seatIndex) => (
+                        <div className="seat-container" key={seatIndex}>
+                            <button
+                              className={"seat" + (seat.booked ? ' booked' : seat.selected ? ' selected' : ' free')}
+                              onClick={() => this.onSeatClick(rowIndex, seatIndex)}
+                              disabled={seat.booked ? 'disabled' : null}
+                              title={seat.booked ? 'Unavailable' : seat.selected ? 'Selected' : 'Available'}>
+                                <span className='dot'/>
+                            </button>
+                        </div>))}
+                    </div>))}
                 </div>
-                <div className="selection-section">
-                    <div className="seats">
-                        <div className="screen">Screen</div>
-                      {this.state.seats.map((row, rowIndex) => (
-                        <div className="row" key={rowIndex}>
-                          {row.map((seat, seatIndex) => (
-                            <div className="seat-container" key={seatIndex}>
-                              <button
-                                  className={"seat" + (seat.booked ? ' booked' : seat.selected ? ' selected' : ' free')}
-                                  onClick={() => this.onSeatClick(rowIndex, seatIndex)}
-                                  disabled={seat.booked ? 'disabled' : null}>
-                                  <span className='dot'/>
-                              </button>
-                                {/*TODO: accessibility*/}
-                            </div>))}
-                        </div>))
-                            }
-                    </div>
-                    <div className="right-panel">
-                        {this.renderKey()}
-                        <button className="submit-button" onClick={this.handleSubmit} id="seat-select-book-button">Book!</button>
-                    </div>
+                <div className="right-panel">
+                    {this.renderKey()}
+                    <button className="submit-button" onClick={this.handleSubmit} id="seat-select-book-button">Book!</button>
                 </div>
             </div>
         );

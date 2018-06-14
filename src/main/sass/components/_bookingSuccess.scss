@@ -1,21 +1,8 @@
 .booking-success {
-  margin-top: 28px;
+  font-size: 1.5rem;
 
-  border: 2px solid $primary-colour;
-
-  display: flex;
-  flex-direction: column;
-
-  .title-section {
-    background: $primary-colour;
-    color: $background-colour;
-  }
-
-  .selection-section {
-    padding: 28px;
-    display: flex;
-    justify-content: space-around;
-    background: lighten($primary-colour, 30);
-    color: $background-colour;
+  .reference {
+    font-weight: bold;
+    color: $highlight-colour;
   }
 }

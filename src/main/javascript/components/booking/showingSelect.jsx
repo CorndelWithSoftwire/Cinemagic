@@ -32,27 +32,18 @@ export default class ShowingSelect extends React.Component {
             return <LoadingSpinner />;
         }
 
-        const showings = this.state.showings.length
-            ? <div>
+        return this.state.showings.length
+            ? <div className="showing-select">
                 {this.state.showings.map(s => (
                   <button
                     key={s.id}
                     onClick={() => this.props.selectShowing(s)}
-                    className="film-selection-button">
+                    className="showing-selection-button">
                     {s.film.name} - {s.time.format('MMM Do h:mm A')}
                   </button>))}
               </div>
-            : <p>There are no showings for this cinema.</p>;
-
-        return (
-            <div className="showing-select">
-                <div className="title-section">
-                    <h1>Select a showing</h1>
-                </div>
-                <div className="selection-section">
-                    {showings}
-                </div>
-            </div>
-        );
+            : <div className="showing-select">
+                  Sorry, there are no showings for this cinema.
+              </div>;
     }
 }

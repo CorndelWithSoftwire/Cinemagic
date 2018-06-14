@@ -1,22 +1,7 @@
 .seat-select {
-  margin-top: 28px;
-
-  border: 2px solid $primary-colour;
 
   display: flex;
-  flex-direction: column;
-
-  .title-section {
-    background: $primary-colour;
-    color: $background-colour;
-  }
-
-  .selection-section {
-    padding: 28px;
-    display: flex;
-    justify-content: space-around;
-    background: lighten($primary-colour, 30);
-  }
+  justify-content: space-around;
 
   .seats {
     flex: 0 0 auto;
@@ -59,7 +44,7 @@
       border-color: $secondary-colour;
 
       .dot {
-        display: none;
+        opacity: 0;
       }
     }
 
