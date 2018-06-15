@@ -2,6 +2,33 @@ import * as React from 'react';
 import LoadingSpinner from '../loadingSpinner';
 
 export default class SeatSelect extends React.Component {
+    static renderSeatKey() {
+        return (
+          <div className="key">
+            <div className="key-entry">
+              <div className="seat-container">
+                <div className="seat free" />
+              </div>
+              <div className="label">Available</div>
+            </div>
+            <div className="key-entry">
+              <div className="seat-container">
+                <div className="seat selected">
+                  <span className="dot" />
+                </div>
+              </div>
+              <div className="label">Selected</div>
+            </div>
+            <div className="key-entry">
+              <div className="seat-container">
+                <div className="seat booked" />
+              </div>
+              <div className="label">Unavailable</div>
+            </div>
+          </div>
+        );
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -77,56 +104,29 @@ export default class SeatSelect extends React.Component {
         }
 
         return (
-            <div className="seat-select">
-                <div className="seats">
-                    <div className="screen">Screen</div>
-                  {this.state.seats.map((row, rowIndex) => (
-                    <div className="row" key={rowIndex}>
-                      {row.map((seat, seatIndex) => (
-                        <div className="seat-container" key={seatIndex}>
-                            <button
-                              className={`seat${seat.booked ? ' booked' : seat.selected ? ' selected' : ' free'}`}
-                              onClick={() => this.onSeatClick(rowIndex, seatIndex)}
-                              disabled={seat.booked ? 'disabled' : null}
-                              title={seat.booked ? 'Unavailable' : seat.selected ? 'Selected' : 'Available'}
-                            >
-                                <span className='dot'/>
-                            </button>
-                        </div>))}
+          <div className="seat-select">
+            <div className="seats">
+              <div className="screen">Screen</div>
+              {this.state.seats.map((row, rowIndex) => (
+                <div className="row" key={rowIndex}>
+                  {row.map((seat, seatIndex) => (
+                    <div className="seat-container" key={seatIndex}>
+                      <button
+                        className={`seat${seat.booked ? ' booked' : seat.selected ? ' selected' : ' free'}`}
+                        onClick={() => this.onSeatClick(rowIndex, seatIndex)}
+                        disabled={seat.booked ? 'disabled' : null}
+                        title={seat.booked ? 'Unavailable' : seat.selected ? 'Selected' : 'Available'}
+                      >
+                        <span className="dot" />
+                      </button>
                     </div>))}
-                </div>
-                <div className="right-panel">
-                    {this.renderSeatKey()}
-                    <button className="submit-button" onClick={this.handleSubmit} id="seat-select-book-button">Book!</button>
-                </div>
+                </div>))}
             </div>
-        );
-    }
-
-    renderSeatKey() {
-        return (
-            <div className="key">
-                <div className="key-entry">
-                    <div className="seat-container">
-                        <div className="seat free"/>
-                    </div>
-                    <div className="label">Available</div>
-                </div>
-                <div className="key-entry">
-                    <div className="seat-container">
-                        <div className="seat selected">
-                            <span className='dot'/>
-                        </div>
-                    </div>
-                    <div className="label">Selected</div>
-                </div>
-                <div className="key-entry">
-                    <div className="seat-container">
-                        <div className="seat booked"/>
-                    </div>
-                    <div className="label">Unavailable</div>
-                </div>
+            <div className="right-panel">
+              {this.renderSeatKey()}
+              <button className="submit-button" onClick={this.handleSubmit} id="seat-select-book-button">Book!</button>
             </div>
+          </div>
         );
     }
 }

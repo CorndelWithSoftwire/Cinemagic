@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { BrowserRouter, Route, Switch, Link, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Api from '../api';
 import Booking from './booking/booking';
 import Admin from './admin/admin';
 import ErrorModal from './errorModal';
 import AuthHolder from './admin/authHolder';
-import NavBar from "./navBar";
+import NavBar from './navBar';
 
 export default class App extends React.Component {
     constructor(props) {
@@ -78,11 +78,14 @@ export default class App extends React.Component {
           <div className="app">
             <div className="main-content">
               {this.state.recoverableError
-                  ? <ErrorModal message={this.state.recoverableError} onClose={this.onCloseErrorModal}/>
+                  ? <ErrorModal
+                    message={this.state.recoverableError}
+                    onClose={this.onCloseErrorModal}
+                  />
                   : ''}
               <BrowserRouter>
                 <div>
-                  <NavBar/>
+                  <NavBar />
                   {routes}
                 </div>
               </BrowserRouter>

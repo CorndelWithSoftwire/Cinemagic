@@ -34,16 +34,17 @@ export default class ShowingSelect extends React.Component {
 
         return this.state.showings.length
             ? <div className="showing-select">
-                {this.state.showings.map(s => (
-                  <button
-                    key={s.id}
-                    onClick={() => this.props.selectShowing(s)}
-                    className="showing-selection-button">
-                    {s.film.name} - {s.time.format('MMM Do h:mm A')}
-                  </button>))}
-              </div>
+              {this.state.showings.map(s => (
+                <button
+                  key={s.id}
+                  onClick={() => this.props.selectShowing(s)}
+                  className="showing-selection-button"
+                >
+                  {s.film.name} - {s.time.format('MMM Do h:mm A')}
+                </button>))}
+              </div> // eslint-disable-line react/jsx-indent
             : <div className="showing-select">
                   Sorry, there are no showings for this cinema.
-              </div>;
+              </div>; // eslint-disable-line react/jsx-indent
     }
 }

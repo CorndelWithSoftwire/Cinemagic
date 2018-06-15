@@ -37,19 +37,19 @@ export default class CinemaSelect extends React.Component {
     render() {
         if (this.isLoaded()) {
             return (
-                  <div className="cinema-select">
-                      <form className="cinema-select-form" onSubmit={this.handleSubmit}>
-                          <div className="selection-container">
-                              <select defaultValue="" onChange={this.onChange}>
-                                  <option value="" disabled>Select a Cinema</option>
-                                  {this.state.cinemas.map(({ name }, index) =>
-                                      <option key={name} value={index}>{name}</option>)
+              <div className="cinema-select">
+                <form className="cinema-select-form" onSubmit={this.handleSubmit}>
+                  <div className="selection-container">
+                    <select defaultValue="" onChange={this.onChange}>
+                      <option value="" disabled>Select a Cinema</option>
+                      {this.state.cinemas.map(({ name }, index) =>
+                        <option key={name} value={index}>{name}</option>)
                                   }
-                              </select>
-                          </div>
-                          <button type="submit" className="submit-button">&#9654;</button>
-                      </form>
+                    </select>
                   </div>
+                  <button type="submit" className="submit-button">&#9654;</button>
+                </form>
+              </div>
             );
         }
         return <LoadingSpinner />;
