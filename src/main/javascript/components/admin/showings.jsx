@@ -85,7 +85,7 @@ export default class Showings extends React.Component {
 
     renderScreenSelector() {
         return this.state.cinemas.length
-            ? <div id="showings-screen-selector" className="screen-selector">
+            ? <div className="screen-selector">
               {this.state.cinemas.map(cinema =>
                     cinema.screens.map(screen => (
                       <button

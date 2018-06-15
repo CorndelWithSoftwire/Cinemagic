@@ -123,7 +123,7 @@ export default class SeatSelect extends React.Component {
                 </div>))}
             </div>
             <div className="right-panel">
-              {this.renderSeatKey()}
+              {SeatSelect.renderSeatKey()}
               <button className="submit-button" onClick={this.handleSubmit} id="seat-select-book-button">Book!</button>
             </div>
           </div>
