@@ -1,0 +1,42 @@
+.admin-navbar {
+  margin-top: 28px;
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+  }
+
+  li.navbar-title {
+    flex: 1 0 auto;
+    font-size: 2rem;
+    text-align: left;
+
+    h1 {
+      margin: 0;
+    }
+  }
+
+  li.navbar-link {
+    flex: 0 0 auto;
+    border: 2px solid $primary-colour;
+    border-radius: 2px;
+    background: lighten($primary-colour, 10);
+    margin: 0 8px;
+
+    &:hover {
+      background: lighten($primary-colour, 30);
+    }
+  }
+
+  li > a {
+    display: block;
+    color: $background-colour;
+    text-decoration: none;
+    padding: 8px 16px;
+  }
+}

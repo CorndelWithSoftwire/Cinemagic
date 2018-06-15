@@ -1,0 +1,28 @@
+.admin-showings {
+  .screen-selector {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    button {
+      flex: 0 0 auto;
+
+      &.selected {
+        background: $primary-colour;
+        color: $background-colour;
+      }
+    }
+  }
+
+  .showings-details {
+    padding: 16px;
+    border: 2px solid $primary-colour;
+    background: $background-colour;
+    color: $primary-colour;
+    margin-top: 28px;
+
+    h3 {
+      text-align: left;
+    }
+  }
+}

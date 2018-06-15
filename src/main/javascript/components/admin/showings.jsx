@@ -88,139 +88,115 @@ export default class Showings extends React.Component {
             return <LoadingSpinner />;
         }
 
-        const screenSelector = (() => {
-            if (this.state.cinemas.length > 0) {
-                return (
-                  <div id="showings-screen-selector">
-                    {this.state.cinemas.map(cinema =>
-                            cinema.screens.map(screen => (
-                              <button
-                                key={screen.id}
-                                onClick={() => this.selectScreen(cinema, screen)}
-                              >
-                                {cinema.name} - {screen.name}
-                              </button>
-                            )))
-                        }
-                  </div>
-                );
-            }
-                return (<p>You need to add a cinema with some screens first.</p>);
-        })();
-
-        const existingShowings = () => (
-          <table>
-            <thead>
-              <tr>
-                <td>Film</td>
-                <td style={{ width: '15%' }}>date / time</td>
-                <td style={{ width: '1rem' }} />
-              </tr>
-            </thead>
-            <tbody>
-              {
-                this.state.showings
-                    .filter(showing => showing.screen.id === this.state.selectedScreen.id)
-                    .map(showing => (
-                      <tr key={showing.id}>
-                        <td className="showing-detail-film-name">{showing.film.name}</td>
-                        <td className="showing-detail-time">{showing.time.format('D/M/YYYY HH:mm')}</td>
-                        <td>
-                          <button
-                            aria-label="Delete button"
-                            className="showing-detail-delete-button delete fas fa-minus-circle pull-right"
-                            onClick={() => this.onDelete(showing.id)}
-                          />
-                        </td>
-                      </tr>))
-            }
-            </tbody>
-          </table>
-        );
-
-        const newShowingForm = (
-          <div className="centered-form-container">
-            <h2>New Showing</h2>
-            <form onSubmit={this.onSubmit}>
-
-              <label htmlFor="showing-form-film-field">Film</label>
-              <select
-                id="showing-form-film-field"
-                value={this.state.form}
-                name="film"
-                onChange={this.onChange}
-                required="true"
-                defaultValue="not-selected"
-              >
-                <option
-                  disabled="true"
-                  value="not-selected"
-                >
-                      Please select a film
-                </option>
-                {this.state.films.map(film => (
-                  <option key={film.id} value={film.id}>{film.name}</option>
-                  ))}
-              </select>
-
-              <label htmlFor="showing-form-date-field">Date</label>
-              <input
-                id="showing-form-date-field"
-                type="date"
-                value={this.state.date}
-                name="date"
-                onChange={this.onChange}
-                required="true"
-              />
-
-              {
-                /**
-                  * TODO This should be a time field, but I've had real issues testing it with
-                  * Selenium
-                  */
-              }
-
-              <label htmlFor="showing-form-time-field">Time (HH:mm)</label>
-              <input
-                id="showing-form-time-field"
-                type="text"
-                value={this.state.time}
-                name="time"
-                onChange={this.onChange}
-                required="true"
-              />
-
-              <button
-                id="showing-form-submit-button"
-                type="submit"
-              >
-                    Add
-              </button>
-            </form>
-          </div>
-        );
-
-        const content = (() => {
-            if (this.state.selectedScreen) {
-                return (
-                  <div id="showings-details">
-                    <h3>
-                      {this.state.selectedCinema.name} - {this.state.selectedScreen.name}
-                    </h3>
-                    {existingShowings()}
-                    {newShowingForm}
-                  </div>
-                );
-            }
-            return null;
-        })();
-
         return (
-          <div id="showings">
-            <h3>Showings</h3>
-            {screenSelector}
-            {content}
+          <div id="showings" className="admin-showings">
+            {this.renderScreenSelector()}
+            {this.state.selectedScreen &&
+                <div className="showings-details">
+                    <h3>{this.state.selectedCinema.name} - {this.state.selectedScreen.name}</h3>
+                    {this.renderExistingShowings()}
+                    {this.renderNewShowingForm()}
+                </div>}
           </div>
+        );
+    }
+
+    renderScreenSelector() {
+        return this.state.cinemas.length
+            ? <div id="showings-screen-selector" className="screen-selector">
+                {this.state.cinemas.map(cinema =>
+                    cinema.screens.map(screen => (
+                        <button
+                            className={this.state.selectedScreen === screen ? "selected" : null}
+                            disabled={this.state.selectedScreen === screen}
+                            key={screen.id}
+                            onClick={() => this.selectScreen(cinema, screen)}>
+                            {cinema.name} - {screen.name}
+                        </button>
+                    )))}
+            </div>
+            : <div>No screens available!</div>;
+    }
+
+    renderExistingShowings() {
+        return (
+            <div className="showings-list">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Film</th>
+                        <th style={{ width: '15%' }}>date / time</th>
+                        <th style={{ width: '1rem' }} />
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {
+                        this.state.showings
+                            .filter(showing => showing.screen.id === this.state.selectedScreen.id)
+                            .map(showing => (
+                                <tr key={showing.id}>
+                                    <td className="showing-detail-film-name">{showing.film.name}</td>
+                                    <td className="showing-detail-time">{showing.time.format('D/M/YYYY HH:mm')}</td>
+                                    <td>
+                                        <button
+                                            aria-label="Delete button"
+                                            className="showing-detail-delete-button delete-button"
+                                            onClick={() => this.onDelete(showing.id)}
+                                        />
+                                    </td>
+                                </tr>))
+                    }
+                    </tbody>
+                </table>
+            </div>
+        );
+    }
+
+    renderNewShowingForm() {
+        return (
+            <div className="centered-form-container">
+                <h2>New Showing</h2>
+                <form onSubmit={this.onSubmit}>
+
+                    <label htmlFor="showing-form-film-field">Film</label>
+                    <select
+                        id="showing-form-film-field"
+                        value={this.state.form}
+                        name="film"
+                        onChange={this.onChange}
+                        required="true"
+                        defaultValue="not-selected">
+                        <option
+                            disabled="true"
+                            value="not-selected">
+                            Please select a film
+                        </option>
+                        {this.state.films.map(film => (
+                            <option key={film.id} value={film.id}>{film.name}</option>
+                        ))}
+                    </select>
+
+                    <label htmlFor="showing-form-date-field">Date</label>
+                    <input
+                        id="showing-form-date-field"
+                        type="date"
+                        value={this.state.date}
+                        name="date"
+                        onChange={this.onChange}
+                        required="true"/>
+
+                    <label htmlFor="showing-form-time-field">Time (HH:mm)</label>
+                    <input
+                        id="showing-form-time-field"
+                        type="text"
+                        value={this.state.time}
+                        name="time"
+                        onChange={this.onChange}
+                        required="true"/>
+
+                    <button id="showing-form-submit-button" type="submit">Add</button>
+                </form>
+            </div>
         );
     }
 }

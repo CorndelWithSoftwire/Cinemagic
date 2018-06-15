@@ -50,14 +50,14 @@ export default class Cinemas extends React.Component {
 
     render() {
         const buildCinemaDetails = cinema => (
-          <div key={cinema.id}>
-            <h3 className="cinema-details-name">{cinema.name}
-              <button
-                aria-label="Delete cinema"
-                className="cinema-details-delete-button delete fas fa-minus-circle"
-                onClick={() => this.onClickDeleteCinema(cinema.id)}
-              />
-            </h3>
+          <div key={cinema.id} className="cinema-section">
+              <div className="cinema-title">
+                  <h3 className="cinema-details-name">{cinema.name}</h3>
+                  <button
+                    aria-label="Delete cinema"
+                    className="cinema-details-delete-button delete-button"
+                    onClick={() => this.onClickDeleteCinema(cinema.id)}/>
+              </div>
             <Screens
               screens={cinema.screens}
               cinemaId={cinema.id}
@@ -68,9 +68,7 @@ export default class Cinemas extends React.Component {
         );
 
         return (
-          <div>
-            <h2 id="cinemas-title">Cinemas</h2>
-
+          <div className="admin-cinemas">
             {this.isLoaded() ? this.state.cinemas.map(buildCinemaDetails) : <LoadingSpinner />}
 
             <div className="centered-form-container">

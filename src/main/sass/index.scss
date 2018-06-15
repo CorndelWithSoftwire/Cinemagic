@@ -2,16 +2,24 @@
 @import "global";
 
 // Import components
-@import "components/admin";
-@import "components/app";
-@import "components/booking";
-@import "components/bookingSuccess";
-@import "components/cinemaSelect";
-@import "components/errorBoundary";
-@import "components/errorModal";
-@import "components/navBar";
-@import "components/progressIndicator";
-@import "components/seatSelect";
-@import "components/showingSelect";
-@import "components/spinner";
-@import "components/stepContainer";
+@import "admin/admin";
+@import "admin/adminNavBar";
+@import "admin/adminSection";
+@import "admin/cinemas";
+@import "admin/films";
+@import "admin/login";
+@import "admin/showings";
+
+@import "booking/booking";
+@import "booking/bookingSuccess";
+@import "booking/cinemaSelect";
+@import "booking/progressIndicator";
+@import "booking/seatSelect";
+@import "booking/showingSelect";
+@import "booking/stepContainer";
+
+@import "common/app";
+@import "common/errorBoundary";
+@import "common/errorModal";
+@import "common/navBar";
+@import "common/spinner";

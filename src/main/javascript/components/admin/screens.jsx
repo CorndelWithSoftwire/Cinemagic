@@ -59,7 +59,7 @@ export default class Screens extends React.Component {
                     <td>
                       <button
                         aria-label="Delete screen"
-                        className="screen-detail-delete-button delete fas fa-minus-circle pull-right"
+                        className="screen-detail-delete-button delete-button"
                         onClick={() => this.onClickDeleteScreen(screen.id)}
                       />
                     </td>

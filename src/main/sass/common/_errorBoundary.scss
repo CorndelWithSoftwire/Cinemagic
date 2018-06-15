@@ -1,11 +1,11 @@
 .errorBoundary {
 
   h1 {
-    font-family: 'Amatic SC', cursive;
+    font-family: $title-font;
   }
 
   p {
-    font-family: 'Open Sans Condensed', sans-serif;
+    font-family: $paragraph-font;
   }
 
   margin: 0;

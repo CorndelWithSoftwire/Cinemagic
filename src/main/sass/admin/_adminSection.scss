@@ -1,0 +1,82 @@
+.admin-section {
+  margin-top: 28px;
+  border: 2px solid $primary-colour;
+
+  display: flex;
+  flex-direction: column;
+
+  .title-section {
+    background: $primary-colour;
+    color: $background-colour;
+  }
+
+  .content-section {
+    padding: 28px;
+    min-height: 200px;
+
+    background: lighten($primary-colour, 30);
+    color: $background-colour;
+  }
+
+  // Common styles for admin elements
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th, td {
+      padding: 4px 8px;
+      text-align: left;
+    }
+
+    th {
+      border-bottom: 2px solid $primary-colour;
+    }
+  }
+
+  input, select {
+    border: 2px solid $primary-colour;
+    padding: 8px;
+    font-family: inherit;
+  }
+
+  button {
+    background: $background-colour;
+    color: $primary-colour;
+    border: 2px solid $primary-colour;
+    padding: 8px 16px;
+
+    &:hover {
+      background: darken($background-colour, 20);
+      color: darken($primary-colour, 20);
+    }
+  }
+
+  .delete-button {
+    border-radius: 8px;
+    padding: 4px;
+
+    &:after {
+      content: '\00274C';
+      font-weight: bold;
+    }
+  }
+
+  .centered-form-container {
+    max-width: 600px;
+    margin: 28px auto;
+    text-align: center;
+
+    form {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      grid-gap: 10px;
+      label {
+        grid-column: 1/2;
+      }
+      input,button {
+        grid-column: 2/3;
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+.admin-cinemas {
+  .cinema-section {
+    padding: 16px;
+    border: 2px solid $primary-colour;
+    background: $background-colour;
+    color: $primary-colour;
+    margin-top: 28px;
+
+    &:first-of-type {
+      margin: 0;
+    }
+  }
+
+  .cinema-title {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+
+    h3 {
+      margin: 0;
+    }
+  }
+}

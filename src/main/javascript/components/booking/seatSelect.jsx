@@ -85,24 +85,25 @@ export default class SeatSelect extends React.Component {
                       {row.map((seat, seatIndex) => (
                         <div className="seat-container" key={seatIndex}>
                             <button
-                              className={"seat" + (seat.booked ? ' booked' : seat.selected ? ' selected' : ' free')}
+                              className={`seat${seat.booked ? ' booked' : seat.selected ? ' selected' : ' free'}`}
                               onClick={() => this.onSeatClick(rowIndex, seatIndex)}
                               disabled={seat.booked ? 'disabled' : null}
-                              title={seat.booked ? 'Unavailable' : seat.selected ? 'Selected' : 'Available'}>
+                              title={seat.booked ? 'Unavailable' : seat.selected ? 'Selected' : 'Available'}
+                            >
                                 <span className='dot'/>
                             </button>
                         </div>))}
                     </div>))}
                 </div>
                 <div className="right-panel">
-                    {this.renderKey()}
+                    {this.renderSeatKey()}
                     <button className="submit-button" onClick={this.handleSubmit} id="seat-select-book-button">Book!</button>
                 </div>
             </div>
         );
     }
 
-    renderKey() {
+    renderSeatKey() {
         return (
             <div className="key">
                 <div className="key-entry">

@@ -1,0 +1,13 @@
+.app {
+  font-family: $paragraph-font;
+  min-height: 100vh;
+
+  h1, h2, h3 {
+    font-family: $title-font;
+  }
+
+  .main-content {
+    width: 960px;
+    margin: auto;
+  }
+}

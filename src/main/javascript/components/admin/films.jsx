@@ -54,8 +54,7 @@ export default class Films extends React.Component {
     render() {
         if (this.isLoaded()) {
             return (
-              <div>
-                <h2 id="films-title"> Films </h2>
+              <div className="admin-films">
                 <table>
                   <thead>
                     <tr>
@@ -71,7 +70,7 @@ export default class Films extends React.Component {
                         <td className="films-details-length-minutes">{film.lengthMinutes}</td>
                         <td>
                           <button
-                            className="films-details-delete-button delete fas fa-minus-circle pull-right"
+                            className="films-details-delete-button delete-button"
                             key={film.id}
                             onClick={() => this.onClickDeleteFilm(film.id)}
                           />
@@ -81,7 +80,7 @@ export default class Films extends React.Component {
                   </tbody>
                 </table>
                 <div className="centered-form-container">
-                  <h2> Add new film </h2>
+                  <h2>Add new film</h2>
                   <form onSubmit={this.onSubmit}>
                     <label htmlFor="films-form-name-field">Name
                     </label>

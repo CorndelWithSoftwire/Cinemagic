@@ -52,7 +52,7 @@ export default class Login extends React.Component {
                   onChange={this.onChange}
                 />
 
-                <button id="login-form-submit-button" type="submit">Login!</button>
+                <button id="login-form-submit-button" className="submit-button" type="submit">Login!</button>
               </form>
             </div>
           </div>
