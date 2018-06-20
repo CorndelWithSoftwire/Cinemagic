@@ -8,7 +8,7 @@ Running `mvn package` will build, verify, and package the frontend and backend.
 To run the application in development mode from the command line:
 
 ```bash
-mvn compile spring-boot:run '-Dspring.profiles.active=development'
+mvn compile spring-boot:run "-Dspring.profiles.active=development"
 ```
 
 This will automatically spin up an H2 database.
@@ -33,7 +33,7 @@ You will need to inject or otherwise override the database URL, database usernam
 admin passwords in `application-production.properties`, then run:
 
 ```bash
-mvn compile spring-boot:run '-Dspring.profiles.active=production'
+mvn compile spring-boot:run "-Dspring.profiles.active=production"
 ```
 
 ## Architecture
